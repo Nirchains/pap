@@ -36,6 +36,10 @@ jQuery(function($) {
 			toggleSidebar();	
 		})
 
+		.on('change', 'input.decimal', function() {
+			$(this).val($(this).val().replace(/,/g, '.'));
+		})
+
 		.scroll(function() {
 			if ($(document).scrollTop()<=300) {
 				$("#back-top").hide("fast");
