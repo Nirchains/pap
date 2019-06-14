@@ -399,7 +399,8 @@ div.fabrikElement .input-medium {
 .fabrikRepeatGroup___t_solicitudes_grupos___grupos .chzn-container,
 .fabrikRepeatGroup___t_solicitudes_seminarios___asignaturas .chzn-container,
 .fabrikRepeatGroup___t_solicitudes_seminarios___seminarios .chzn-container,
-.fabrikRepeatGroup___t_solicitudes_tutelas___asignaturas .chzn-container {
+.fabrikRepeatGroup___t_solicitudes_tutelas___asignaturas .chzn-container,
+.fabrikRepeatGroup___t_solicitudes_tutelas___tutelas .chzn-container {
 	width: 100% !important;
 }
 
