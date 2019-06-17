@@ -12,10 +12,16 @@
 defined('_JEXEC') or die('Restricted access');
 
 ?>
+
+<?php
+	$active = JFactory::getApplication()->getMenu()->getActive();
+	if ($active->id == 139) {
+?>
+
 <tr id="<?php echo $this->_row->id;?>" class="<?php echo $this->_row->class;?>">
 	<?php
 	$heading_grupo_grande = "t_grupos___grupo_grande";
-	$grupo_grande = (int)($this->_row->data->$heading_grupo_grande);
+	$grupo_grande = (int)($this->_row->data->$heading_grupo_grande) || 0;
 
 	foreach ($this->headings as $heading => $label) {
 		$style = empty($this->cellClass[$heading]['style']) ? '' : 'style="'.$this->cellClass[$heading]['style'].'"';
@@ -32,3 +38,22 @@ defined('_JEXEC') or die('Restricted access');
 	}
 	?>
 </tr>
+
+<?php 
+	} else {
+?>
+
+<tr id="<?php echo $this->_row->id;?>" class="<?php echo $this->_row->class;?>">
+	<?php foreach ($this->headings as $heading => $label) {
+		$style = empty($this->cellClass[$heading]['style']) ? '' : 'style="'.$this->cellClass[$heading]['style'].'"';
+		?>
+		<td class="<?php echo $this->cellClass[$heading]['class']?>" <?php echo $style?>>
+			<?php echo isset($this->_row->data) ? $this->_row->data->$heading : '';?>
+		</td>
+	<?php }?>
+</tr>
+
+<?php
+	}
+?>
+

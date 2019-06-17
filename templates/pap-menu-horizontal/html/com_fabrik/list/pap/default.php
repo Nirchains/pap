@@ -54,6 +54,10 @@ endif;
 $headingsHtml = $this->loadTemplate('headings');
 echo $this->loadTemplate('tabs');
 ?>
+<?php
+	$active = JFactory::getApplication()->getMenu()->getActive();
+	if ($active->id == 139) {
+?>
 <fieldset class="leyenda">
 <legend>Leyenda</legend>
 	<table class="estados">
@@ -67,6 +71,24 @@ echo $this->loadTemplate('tabs');
 		</tbody>
 	</table>
 </fieldset>
+<?php
+} else {
+?>
+<fieldset class="leyenda">
+<legend>Leyenda</legend>
+	<table class="estados">
+		<tbody>
+			<tr>
+				<td class="b-positivo">Faltan horas</td>
+				<td class="b-negativo">Sobran horas </td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+<?php
+}
+?>
+
 <div class="fabrikDataContainer">
 
 <?php foreach ($this->pluginBeforeList as $c) :
@@ -103,6 +125,23 @@ endforeach;
 				<tr class="fabrik_groupheading info">
 					<td colspan="<?php echo $this->colCount;?>">
 						<?php echo $this->layoutGroupHeading($groupedBy, $group); ?>
+					</td>
+				</tr>
+				<tr class="info-titulacion">
+					<td colspan="<?php echo $this->colCount;?>">
+						<?php
+						$heading_titulacion = "t_titulaciones___titulacion";
+						$heading_curso = "t_asignaturas___curso";
+						$heading_cuatrimestre = "t_asignaturas___cuatrimestre";
+						$heading_coordinador = "t_asignaturas___coordinador";
+						
+						$titulacion = (string)($group[0]->data->$heading_titulacion);
+						$curso = (string)($group[0]->data->$heading_curso);
+						$cuatrimestre = (string)($group[0]->data->$heading_cuatrimestre);
+						$coordinador = (string)($group[0]->data->$heading_coordinador);
+						echo $titulacion. " - " . $curso . " - " . $cuatrimestre . " - Coordinador: " . $coordinador;
+						//print_r($group);
+						?>
 					</td>
 				</tr>
 			</tbody>

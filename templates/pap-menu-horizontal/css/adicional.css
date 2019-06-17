@@ -5,7 +5,6 @@ td.t_usuarios___diferencia
 }
 
 /*********************GRUPOS **************************************/
-list_8_com_fabrik_8
 
 table.estados td.b-negativo,
 #list_2_com_fabrik_2 tr.balanceg-positivo .t_grupos___creditos,
@@ -32,7 +31,7 @@ table.estados td.b-positivo,
 #list_8_com_fabrik_8 tr.balanceg-negativo .t_tutelas___creditos_asignados,
 #list_8_com_fabrik_8 tr.balanceg-negativo .t_tutelas___diferencia
 {
-	background-color:#f7d9d9;
+	background-color:#ffeaea;
 }
 
 .tdgrey, .grupo_grande {
@@ -57,6 +56,7 @@ table.estados td.b-positivo,
 	background-color:#feffda !important;
 }
 
+/*
 .balancepositivo
 {
 	background-color:#ffeaea;
@@ -65,6 +65,7 @@ table.estados td.b-positivo,
 {
 	background-color:#f1fbff;
 }
+*/
 /********************************************************************/
 .chzn-container-single .chzn-single
 {
@@ -367,6 +368,7 @@ div.plg-fileupload > div
 .t_seminarios___unidad_docente:hover,
 .t_seminarios___horario:hover,
 .t_seminarios___creditos:hover,
+.t_seminarios___codigo:hover,
 .t_tutelas___tutela:hover, 
 .t_tutelas___unidad_docente:hover,
 .t_tutelas___horario:hover,
