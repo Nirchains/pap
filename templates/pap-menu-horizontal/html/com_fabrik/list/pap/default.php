@@ -127,23 +127,6 @@ endforeach;
 						<?php echo $this->layoutGroupHeading($groupedBy, $group); ?>
 					</td>
 				</tr>
-				<tr class="info-titulacion">
-					<td colspan="<?php echo $this->colCount;?>">
-						<?php
-						$heading_titulacion = "t_titulaciones___titulacion";
-						$heading_curso = "t_asignaturas___curso";
-						$heading_cuatrimestre = "t_asignaturas___cuatrimestre";
-						$heading_coordinador = "t_asignaturas___coordinador";
-						
-						$titulacion = (string)($group[0]->data->$heading_titulacion);
-						$curso = (string)($group[0]->data->$heading_curso);
-						$cuatrimestre = (string)($group[0]->data->$heading_cuatrimestre);
-						$coordinador = (string)($group[0]->data->$heading_coordinador);
-						echo $titulacion. " - " . $curso . " - " . $cuatrimestre . " - Coordinador: " . $coordinador;
-						//print_r($group);
-						?>
-					</td>
-				</tr>
 			</tbody>
 			<?php endif ?>
 			<tbody class="fabrik_groupdata">
@@ -155,6 +138,7 @@ endforeach;
 					</td>
 				</tr>
 			<?php
+			$GLOBALS['id_asignatura'] = -1;
 			foreach ($group as $this->_row) :
 				echo $this->loadTemplate('row');
 		 	endforeach
