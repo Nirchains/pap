@@ -24,27 +24,75 @@ if ($active->id == 139) {
 }
 
 
+//Recogemos los datos de conexión a la BD
+$app= JFactory::getApplication();
+$host = $app->getCfg('host');
+$userbd = $app->getCfg('user');
+$passbd = $app->getCfg('password');
+$fabrikdb =  $app->getCfg('db2');
 
-$heading_id_asignatura = "t_asignaturas___id";
+$con=mysqli_connect($host,$userbd,$passbd,$fabrikdb);
+
+if (mysqli_connect_errno()) {
+    $formModel->getForm()->error = "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+$heading_id_asignatura = $table . "___asignatura_raw";
 $id_asignatura_siguiente = (int)($this->_row->data->$heading_id_asignatura);
 
-if ($GLOBALS['id_asignatura'] != $id_asignatura_siguiente) {
+if ($GLOBALS['id_asignatura'] != $id_asignatura_siguiente && $id_asignatura_siguiente != 0) {
 	$GLOBALS['id_asignatura'] = $id_asignatura_siguiente;
+
+	$sql = "select ta.id as id_asignatura, ta.curso, ta.cuatrimestre, ta.denominacion as asignatura, tt.titulacion, tc.nombre as coordinador from " . $table . " tg 
+			inner join t_asignaturas ta on tg.asignatura = ta.id
+			inner join t_titulaciones tt on ta.titulacion = tt.id
+			left join t_usuarios tc on ta.coordinador = tc.id
+			where ta.id = " . (int)($GLOBALS['id_asignatura']);
+	$stmt_grupo = $con->prepare($sql);
+	$stmt_grupo->execute();
+
+	$result_grupos = $stmt_grupo->get_result();
+
+	if ($result_grupos->num_rows > 0) {
+		$row = $result_grupos->fetch_assoc();
+		$id_asignatura = $row["id_asignatura"];
+		$titulacion = $row["titulacion"];
+		$curso = "Curso " . $row["curso"] . "&ordm;";
+		
+		switch ($row["cuatrimestre"]) {
+			case '1':
+				$cuatrimestre = "1er Cuatrimestre";
+				break;
+			case '2':
+				$cuatrimestre = "2&ordm; Cuatrimestre";
+				break;
+			case '3':
+				$cuatrimestre = "1er y 2&ordm; Cuatrimestre";
+			default:
+				$cuatrimestre = "";
+		}
+
+		$coordinador = $row["coordinador"];
+		
+	}
+	$stmt_grupo->close(); 
+
+
 ?>
 <tr class="info-titulacion">
 	<td colspan="<?php echo $this->colCount;?>">
 		<?php
 		$heading_asignatura = $table . "___asignatura";
-		$heading_titulacion = "t_titulaciones___titulacion";
-		$heading_curso = "t_asignaturas___curso";
-		$heading_cuatrimestre = "t_asignaturas___cuatrimestre";
-		$heading_coordinador = "t_asignaturas___coordinador";
+		//$heading_titulacion = "t_titulaciones___titulacion";
+		//$heading_curso = "t_asignaturas___curso";
+		//$heading_cuatrimestre = "t_asignaturas___cuatrimestre";
+		//$heading_coordinador = "t_asignaturas___coordinador";
 		
 		$asignatura = (string)($this->_row->data->$heading_asignatura);
-		$titulacion = (string)($this->_row->data->$heading_titulacion);
-		$curso = (string)($this->_row->data->$heading_curso);
-		$cuatrimestre = (string)($this->_row->data->$heading_cuatrimestre);
-		$coordinador = (string)($this->_row->data->$heading_coordinador);
+		//$titulacion = (string)($this->_row->data->$heading_titulacion);
+		//$curso = (string)($this->_row->data->$heading_curso);
+		//$cuatrimestre = (string)($this->_row->data->$heading_cuatrimestre);
+		//$coordinador = (string)($this->_row->data->$heading_coordinador);
 
 		if (isset($_GET['group_by'])) {
 		    echo $asignatura ." - ";
