@@ -348,16 +348,19 @@ div.plg-fileupload > div
 	margin-left:0px !important;
 }
 
-#listform_5_com_fabrik_5 tbody .t_usuarios___orden {
+#listform_5_com_fabrik_5 tbody .t_usuarios___orden,
+#listform_15_com_fabrik_15 tbody .t_grupos___orden {
 	font-size:0;
 	text-align: center;
 }
 
-#listform_5_com_fabrik_5 tbody .t_usuarios___orden:hover {
+#listform_5_com_fabrik_5 tbody .t_usuarios___orden:hover,
+#listform_15_com_fabrik_15 tbody .t_grupos___orden:hover {
 	cursor: move;
 }
 
-#listform_5_com_fabrik_5 tbody .t_usuarios___orden:before {
+#listform_5_com_fabrik_5 tbody .t_usuarios___orden:before,
+#listform_15_com_fabrik_15 tbody .t_grupos___orden:before {
 	font-family: "Font Awesome 5 Free";
    	content: "\f0b2";
    	display: inline-block;
