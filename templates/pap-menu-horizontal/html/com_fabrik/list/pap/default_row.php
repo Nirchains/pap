@@ -120,7 +120,7 @@ if ($GLOBALS['id_asignatura'] != $id_asignatura_siguiente && $id_asignatura_sigu
 
 	foreach ($this->headings as $heading => $label) {
 		$style = empty($this->cellClass[$heading]['style']) ? '' : 'style="'.$this->cellClass[$heading]['style'].'"';
-		if ($grupo_grande==0) ) {
+		if ($grupo_grande==0 ) {
 			$tdclass = "tdgrey";
 		} else {
 			$tdclass = "";
