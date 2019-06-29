@@ -3,7 +3,7 @@
 
 $sql_grupos = "select id
 from t_tutelas
-order by asignatura, unidad_docente, zona, id";
+order by asignatura, unidad_docente, tutela, id";
 $stmt_grupos = $con->prepare($sql_grupos);
 $stmt_grupos->execute();
 
