@@ -28,7 +28,7 @@ if(in_array(12, $usergroups)) {
 	////require_once JPATH_BASE . '/actualiza_profesores_orden.php';
 	////require_once JPATH_BASE . '/actualiza_grupos_orden.php';
 	////require_once JPATH_BASE . '/actualiza_tutelas_orden.php';
-	////require_once JPATH_BASE . '/actualiza_seminarios_orden.php';
+	require_once JPATH_BASE . '/actualiza_seminarios_orden.php';
 	
 }
 
