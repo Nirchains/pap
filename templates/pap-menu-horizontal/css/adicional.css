@@ -17,7 +17,7 @@ table.estados td.b-negativo,
 #list_8_com_fabrik_8 tr.balanceg-positivo .t_tutelas___creditos_asignados,
 #list_8_com_fabrik_8 tr.balanceg-positivo .t_tutelas___diferencia
 {
-	background-color:#e3f4fc;
+	background-color:#ffeaea;
 }
 
 table.estados td.b-positivo,
@@ -31,7 +31,7 @@ table.estados td.b-positivo,
 #list_8_com_fabrik_8 tr.balanceg-negativo .t_tutelas___creditos_asignados,
 #list_8_com_fabrik_8 tr.balanceg-negativo .t_tutelas___diferencia
 {
-	background-color:#ffeaea;
+	background-color:#e3f4fc;
 }
 
 .tdgrey, .grupo_grande {
@@ -60,12 +60,12 @@ table.estados td.b-positivo,
 #list_5_com_fabrik_5 .balancepositivo .t_usuarios___diferencia,
 #list_5_com_fabrik_5 .balancepositivo .t_usuarios___nombre
 {
-	background-color:#ffeaea;
+	background-color:#f1fbff;	
 }
 #list_5_com_fabrik_5 .balancenegativo .t_usuarios___diferencia,
 #list_5_com_fabrik_5 .balancenegativo .t_usuarios___nombre
 {
-	background-color:#f1fbff;
+	background-color:#ffeaea;
 }
 
 /********************************************************************/
@@ -349,18 +349,25 @@ div.plg-fileupload > div
 }
 
 #listform_5_com_fabrik_5 tbody .t_usuarios___orden,
-#listform_15_com_fabrik_15 tbody .t_grupos___orden {
+#listform_15_com_fabrik_15 tbody .t_grupos___orden,
+#list_14_com_fabrik_14 tbody .t_tutelas___orden,
+#listform_13_com_fabrik_13 tbody .t_seminarios___orden {
 	font-size:0;
 	text-align: center;
+	width: 65px;
 }
 
 #listform_5_com_fabrik_5 tbody .t_usuarios___orden:hover,
-#listform_15_com_fabrik_15 tbody .t_grupos___orden:hover {
+#listform_15_com_fabrik_15 tbody .t_grupos___orden:hover,
+#list_14_com_fabrik_14 tbody .t_tutelas___orden:hover,
+#listform_13_com_fabrik_13 tbody .t_seminarios___orden:hover {
 	cursor: move;
 }
 
 #listform_5_com_fabrik_5 tbody .t_usuarios___orden:before,
-#listform_15_com_fabrik_15 tbody .t_grupos___orden:before {
+#listform_15_com_fabrik_15 tbody .t_grupos___orden:before,
+#list_14_com_fabrik_14 tbody .t_tutelas___orden:before,
+#listform_13_com_fabrik_13 tbody .t_seminarios___orden:before {
 	font-family: "Font Awesome 5 Free";
    	content: "\f0b2";
    	display: inline-block;
