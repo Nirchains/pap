@@ -3540,7 +3540,7 @@ class PlgFabrik_Element extends FabrikPlugin
 		{
 			$return[] = '<span class="fabrikFilterRangeLabel">' . FText::_('COM_FABRIK_BETWEEN') . '</span>';
 			$return[] = JHTML::_('select.genericlist', $rows, $v . '[0]', $attributes, 'value', 'text', $def0, $element->name . '_filter_range_0');
-			$return[] = '<br />';
+			//$return[] = '<br />';
 			$return[] = '<span class="fabrikFilterRangeLabel">' . FText::_('COM_FABRIK_AND') . '</span>';
 			$return[] = JHTML::_('select.genericlist', $rows, $v . '[1]', $attributes, 'value', 'text', $def1, $element->name . '_filter_range_1');
 		}
@@ -8102,7 +8102,12 @@ class PlgFabrik_Element extends FabrikPlugin
 					foreach (array_keys($v) as $x)
 					{
 						$origVal = FArrayHelper::getValue($origData, $x);
-						$d[$elKey][$x] = $elementModel->getLabelForValue($v[$x], $origVal, true);
+						//PFG
+						//try {
+							//$d[$elKey][$x] = $elementModel->getLabelForValue($v[$x], $origVal, true);
+						//} catch (Exception $e) {
+
+						//}
 					}
 				}
 				else

@@ -140,7 +140,7 @@ foreach ($newData as $key => $value) {
 			else:
 				if (is_array($val)):
 				else:
-					echo '<tr><td>' . $label . '</td><td>';
+					echo "<tr><td style='background-color: #eeeeee;'>" . $label . "</td><td>";
 					if ($origData[0]->$key!=$newData[0]->$key) {
 						echo $origData[0]->$key . " -> <span " . stylemodificado . ">". $newData[0]->$key . "</span>";
 					} else {
@@ -154,9 +154,9 @@ foreach ($newData as $key => $value) {
 	}
 
 	//GRUPOS
-	echo '<tr><td>Grupos</td><td>';
+	echo "<tr><td style='background-color: #eeeeee;'>Grupos</td><td>";
 	echo "<table border='1' width='100%'><tbody>";
-	echo "<tr><th colspan='3'><b>DATOS ORIGINALES</b></th></tr>";
+	echo "<tr><th colspan='3' style='background-color: #eeeeee;'><b>DATOS ORIGINALES</b></th></tr>";
 	echo "<tr><th>ASIGNATURA</th><th>GRUPO</th><th>CRÉDITOS</th></tr>";
 
 	foreach ($origDataGruposArr as $value) {
@@ -177,7 +177,7 @@ foreach ($newData as $key => $value) {
 		echo "<td>" . $value->t_solicitudes_grupos___creditos_asignados . "</td></tr>";
 	}
 
-	echo "<tr><th colspan='3'><b>DATOS NUEVOS</b></th></tr>";
+	echo "<tr><th colspan='3' style='background-color: #eeeeee;'><b>DATOS NUEVOS</b></th></tr>";
 	echo "<tr><th>ASIGNATURA</th><th>GRUPO</th><th>CRÉDITOS</th></tr>";
 	
 	foreach ($newDataGruposArr as $value) {
@@ -199,9 +199,9 @@ foreach ($newData as $key => $value) {
 	echo "</tbody></table></td></tr>";
 
 	//SEMINARIOS
-	echo '<tr><td>Seminarios</td><td>';
+	echo "<tr><td style='background-color: #eeeeee;'>Seminarios</td><td>";
 	echo "<table border='1' width='100%'><tbody>";
-	echo "<tr><th colspan='3'><b>DATOS ORIGINALES</b></th></tr>";
+	echo "<tr><th colspan='3' style='background-color: #eeeeee;'><b>DATOS ORIGINALES</b></th></tr>";
 	echo "<tr><th>PRÁCTICUM</th><th>SEMINARIO</th><th>CRÉDITOS</th></tr>";
 	foreach ($origDataSeminariosArr as $value) {
 		$ret = estadoSeminario($value, $newDataSeminariosArr);
@@ -219,7 +219,7 @@ foreach ($newData as $key => $value) {
 		echo "<td>" . $value->t_solicitudes_seminarios___creditos_asignados . "</td></tr>";
 	}
 
-	echo "<tr><th colspan='3'><b>DATOS NUEVOS</b></th></tr>";
+	echo "<tr><th colspan='3' style='background-color: #eeeeee;'><b>DATOS NUEVOS</b></th></tr>";
 	echo "<tr><th>PRÁCTICUM</th><th>SEMINARIO</th><th>CRÉDITOS</th></tr>";
 	
 	foreach ($newDataSeminariosArr as $value) {
@@ -241,9 +241,9 @@ foreach ($newData as $key => $value) {
 	echo "</tbody></table></td></tr>";
 
 	//TUTELAS
-	echo '<tr><td>Tutelas</td><td>';
+	echo "<tr><td style='background-color: #eeeeee;'>Tutelas</td><td>";
 	echo "<table border='1' width='100%'><tbody>";
-	echo "<tr><th colspan='3'><b>DATOS ORIGINALES</b></th></tr>";
+	echo "<tr><th colspan='3' style='background-color: #eeeeee;'><b>DATOS ORIGINALES</b></th></tr>";
 	echo "<tr><th>PRÁCTICUM</th><th>TUTELA</th><th>CRÉDITOS</th></tr>";
 	foreach ($origDataTutelasArr as $value) {
 		$ret = estadoTutela($value, $newDataTutelasArr);
@@ -261,7 +261,7 @@ foreach ($newData as $key => $value) {
 		echo "<td>" . $value->t_solicitudes_tutelas___creditos_asignados . "</td></tr>";
 	}
 
-	echo "<tr><th colspan='3'><b>DATOS NUEVOS</b></th></tr>";
+	echo "<tr><th colspan='3' style='background-color: #eeeeee;'><b>DATOS NUEVOS</b></th></tr>";
 	echo "<tr><th>PRÁCTICUM</th><th>TUTELA</th><th>CRÉDITOS</th></tr>";
 	
 	foreach ($newDataTutelasArr as $value) {
