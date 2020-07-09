@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright     Copyright (c) 2009-2019 Ryan Demmer. All rights reserved
+ * @copyright     Copyright (c) 2009-2020 Ryan Demmer. All rights reserved
  * @license       GNU/GPL 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * JCE is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
@@ -117,23 +117,24 @@ class WFApplication extends JObject
         return 0;
     }
 
-    private function getProfileVars($plugin = '')
+    private function getProfileVars()
     {
         $app = JFactory::getApplication();
         $user = JFactory::getUser();
         $option = $this->getComponentOption();
 
+        // find the component if this is called from within the JCE component
         if ($option == 'com_jce') {
             $context = $app->input->getInt('context');
 
             if ($context) {
                 $component = $this->getComponent($context);
-                $option = isset($component->element) ? $component->element : $component->option;
+                $option = $component->element;
             }
         }
 
-        // get the Joomla! area (admin or site)
-        $area = $app->isClient('administrator') ? 2 : 1;
+        // get the Joomla! area, default to "site"
+        $area = $app->getClientId() === 0 ? 1 : 2;
 
         if (!class_exists('Wf_Mobile_Detect')) {
             // load mobile detect class
@@ -160,8 +161,7 @@ class WFApplication extends JObject
             'option' => $option,
             'area' => $area,
             'device' => $device,
-            'groups' => $groups,
-            'plugin' => $plugin,
+            'groups' => $groups
         );
     }
 
@@ -181,9 +181,10 @@ class WFApplication extends JObject
         }
 
         // get the profile variables for the current context
-        $options = $this->getProfileVars($plugin);
+        $options = $this->getProfileVars();
+
         // create a signature to store
-        $signature = serialize($options);
+        $signature = md5(serialize($options));
 
         if (!isset(self::$profile[$signature])) {
             $db = JFactory::getDBO();
@@ -200,12 +201,15 @@ class WFApplication extends JObject
             $db->setQuery($query);
             $profiles = $db->loadObjectList();
 
-            if ($id && !empty($profiles)) {
-                // assign profile
-                self::$profile[$signature] = (object) $profiles[0];
+            // nothing found...
+            if (empty($profiles)) {
+                return null;
+            }
 
+            // select and return a specific profile by id
+            if ($id) {
                 // return
-                return self::$profile[$signature];
+                return (object) $profiles[0];
             }
 
             foreach ($profiles as $item) {
@@ -226,8 +230,10 @@ class WFApplication extends JObject
                 }
 
                 // check component
-                if ($options['option'] !== 'com_jce' && $item->components && in_array($options['option'], explode(',', $item->components)) === false) {
-                    continue;
+                if (!empty($item->components)) {
+                    if (in_array($options['option'], explode(',', $item->components)) === false) {
+                        continue;
+                    }
                 }
 
                 // set device default as 'desktop,tablet,mobile'
@@ -245,7 +251,8 @@ class WFApplication extends JObject
                     continue;
                 }
 
-                if ($options['plugin'] && in_array($options['plugin'], explode(',', $item->plugins)) === false) {
+                // check against passed in plugin value
+                if ($plugin && in_array($plugin, explode(',', $item->plugins)) === false) {
                     continue;
                 }
 
@@ -320,21 +327,26 @@ class WFApplication extends JObject
         }
 
         // get plugin name
-        $plugin = $app->input->getCmd('plugin');
+        $plugin = $app->input->getCmd('plugin', '');
 
-        // optional caller, eg: Link
-        $caller = '';
-
-        // get name and caller from plugin name
-        if (strpos($plugin, '.') !== false) {
-            list($plugin, $caller) = explode('.', $plugin);
-
-            if ($caller) {
-                $options['caller'] = $caller;
-            }
+        // reset the plugin value if this is not called from within the JCE component
+        if ($app->input->getCmd('option') !== 'com_jce') {
+            $plugin = '';
         }
 
         if ($plugin) {
+            // optional caller, eg: Link
+            $caller = '';
+            
+            // get name and caller from plugin name
+            if (strpos($plugin, '.') !== false) {
+                list($plugin, $caller) = explode('.', $plugin);
+
+                if ($caller) {
+                    $options['caller'] = $caller;
+                }
+            }
+
             $options['plugin'] = $plugin;
         }
 

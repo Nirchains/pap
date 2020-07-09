@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright     Copyright (c) 2009-2019 Ryan Demmer. All rights reserved
+ * @copyright     Copyright (c) 2009-2020 Ryan Demmer. All rights reserved
  * @license       GNU/GPL 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * JCE is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
@@ -47,6 +47,7 @@ class WFCleanupPluginConfig
 
         // Get Extended elements
         $settings['extended_valid_elements'] = $wf->getParam('editor.extended_elements', '', '');
+
         // Configuration list of invalid elements as array
         $settings['invalid_elements'] = explode(',', preg_replace('#\s+#', '', $wf->getParam('editor.invalid_elements', '', '')));
 
@@ -61,14 +62,21 @@ class WFCleanupPluginConfig
 
             // add wildcard attributes if none specified
             for ($i = 0; $i < count($extended_elements); ++$i) {
-                $pos = strpos($extended_elements[$i], '[');
+                $value = $extended_elements[$i];
+
+                // clean up value
+                $value = preg_replace('#[^\w_\[\]\*@\|\/!=\:\?+\#]#', '', $value);
+
+                $pos = strpos($value, '[');
 
                 if ($pos === false) {
-                    $elements[] = $extended_elements[$i];
-                    $extended_elements[$i] .= '[*]';
+                    $elements[] = $value;
+                    $value .= '[*]';
                 } else {
-                    $elements[] = substr($extended_elements[$i], 0, $pos);
+                    $elements[] = substr($value, 0, $pos);
                 }
+
+                $extended_elements[$i] = $value;
             }
 
             // restore settings to array

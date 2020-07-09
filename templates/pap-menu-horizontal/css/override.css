@@ -39,6 +39,13 @@ a {
 .btn {
 	transition: all 0.3s ease-in;
 	background-image: none;
+	box-shadow: 1px 1px 2px #ccc;
+	border: none;
+}
+
+.btn-large {
+	padding: 30px 19px;
+    	font-size: 22px;
 }
 
 .btn:focus, .btn:hover {
@@ -70,6 +77,7 @@ a {
 .site-title-bar {
 	background-color: #DF4B7F;
 	padding: 1px;
+	border-bottom: 4px solid #f4b80a
 }
 
 .site-title-bar h2 {
@@ -106,7 +114,7 @@ a {
 }
 
 .breadcrumb > .active {
-	color: #fab700;
+	color: #f4b80a;
 	text-transform: uppercase;
 	font-size: 20px;
 }
@@ -147,7 +155,7 @@ a {
 }
 
 .nav-lateral li.active {
-	background-color: #BE9D56;
+	background-color: #f4b80a;
 	background-image: url("../img/bk-menu-lat-activo2.gif");
 	background-position: -5px center;
 }
@@ -467,6 +475,14 @@ td.t_solicitudes_seminarios___creditos_asignados {
 
 .fabrikRepeatData > li i{
 	margin-top: -3px;
+}
+
+#diferencia_filter_range_0 {
+	width: 71px;
+}
+
+#diferencia_filter_range_1 {
+	width: 71px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
