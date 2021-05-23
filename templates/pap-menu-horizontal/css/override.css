@@ -497,6 +497,7 @@ td.repeat-merge, td.repeat-reduce {
 	display: inline-block;
   position: relative;
   right: 9999px;
+  padding-bottom: 5px;
 }
 
 .btn-solicitud a:after {
