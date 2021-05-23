@@ -43,7 +43,7 @@ $id_asignatura_siguiente = (int)($this->_row->data->$heading_id_asignatura);
 if ($GLOBALS['id_asignatura'] != $id_asignatura_siguiente && $id_asignatura_siguiente != 0) {
 	$GLOBALS['id_asignatura'] = $id_asignatura_siguiente;
 
-	$sql = "select ta.id as id_asignatura, ta.codigo, ta.curso, ta.cuatrimestre, ta.denominacion as asignatura, tt.titulacion, tc.nombre as coordinador from " . $table . " tg 
+	$sql = "select ta.id as id_asignatura, ta.curso, ta.cuatrimestre, ta.denominacion as asignatura, tt.titulacion, tc.nombre as coordinador from " . $table . " tg 
 			inner join t_asignaturas ta on tg.asignatura = ta.id
 			inner join t_titulaciones tt on ta.titulacion = tt.id
 			left join t_usuarios tc on ta.coordinador = tc.id
@@ -56,7 +56,6 @@ if ($GLOBALS['id_asignatura'] != $id_asignatura_siguiente && $id_asignatura_sigu
 	if ($result_grupos->num_rows > 0) {
 		$row = $result_grupos->fetch_assoc();
 		$id_asignatura = $row["id_asignatura"];
-		$codigo = $row["codigo"];
 		$titulacion = $row["titulacion"];
 		$curso = "Curso " . $row["curso"] . "&ordm;";
 		
@@ -98,7 +97,7 @@ if ($GLOBALS['id_asignatura'] != $id_asignatura_siguiente && $id_asignatura_sigu
 		if (isset($_GET['group_by'])) {
 		    echo $asignatura ." - ";
 		} 
-		echo "<b>" . $codigo . "</b> - " . $titulacion. " - " . $curso . " - " . $cuatrimestre . " - Coordinador: " . $coordinador;
+		echo $titulacion. " - " . $curso . " - " . $cuatrimestre . " - Coordinador: " . $coordinador;
 		
 		?>
 	</td>

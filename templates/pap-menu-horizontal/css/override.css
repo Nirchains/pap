@@ -485,6 +485,30 @@ td.t_solicitudes_seminarios___creditos_asignados {
 	width: 71px;
 }
 
+td.repeat-merge ul.fabrikRepeatData li, td.repeat-reduce ul.fabrikRepeatData li {
+	padding: 5px 0!important;
+}
+
+td.repeat-merge, td.repeat-reduce {
+	padding: 4px 5px !important;
+}
+
+.btn-solicitud a {
+	display: inline-block;
+  position: relative;
+  right: 9999px;
+}
+
+.btn-solicitud a:after {
+    content: "Solicitud";
+    position: absolute;
+    top: 2px;
+    right: -9999px;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
 	.nav-lateral li a, .nav-lateral li span.separator{
 		    padding: 8px 5px 8px 5px;
