@@ -483,6 +483,7 @@ td.t_solicitudes_seminarios___creditos_asignados {
 
 td.repeat-merge ul.fabrikRepeatData li, td.repeat-reduce ul.fabrikRepeatData li {
 	padding: 5px 0!important;
+	margin-top: 5px;
 }
 
 td.repeat-merge, td.repeat-reduce {
